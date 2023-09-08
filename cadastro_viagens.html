@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Criação de Viagem</title>
+    <!-- Inclua os arquivos Bootstrap CSS e outros recursos necessários -->
+    <script src="assets/js/color-modes.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.115.4">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+    <link rel="stylesheet" href="Assets/css/css@3">
+    <link href="Assets/css/dist/bootstrap.min.css" rel="stylesheet">
+    <link href="Assets/css/sign-in.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Criação de Viagem</h1>
+
+    <!-- Lista de Eventos com Viagens Cadastradas -->
+    <div class="form-group">
+        <label for="evento">Selecione o Evento:</label>
+        <select class="form-control" id="evento" name="evento">
+            <option value="" disabled selected>Selecione o Evento</option>
+            <!-- Aqui você deve carregar dinamicamente a lista de eventos com viagens cadastradas a partir do banco de dados -->
+        </select>
+    </div>
+
+    <!-- Lista de Motoristas -->
+    <div class="form-group">
+        <label for="motorista">Selecione o Motorista:</label>
+        <select class="form-control" id="motorista" name="motorista">
+            <option value="" disabled selected>Selecione o Motorista</option>
+            <!-- Aqui você deve carregar dinamicamente a lista de motoristas a partir do banco de dados -->
+        </select>
+    </div>
+
+    <!-- Número de Dias -->
+    <div class="form-group">
+        <label for="numero_dias">Número de Dias:</label>
+        <input type="number" class="form-control" id="numero_dias" name="numero_dias" min="1" required>
+    </div>
+
+    <!-- Botão para Enviar o Formulário -->
+    <button type="submit" class="btn btn-primary">Criar Viagem</button>
+
+    <!-- Script JavaScript para carregar dinamicamente as listas de eventos e motoristas -->
+    <script>
+        // Função para carregar a lista de eventos com viagens cadastradas via AJAX
+        function carregarEventosComViagens() {
+            var selectEvento = document.getElementById('evento');
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'backend/consultar_eventos_com_viagens.php', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var eventos = JSON.parse(xhr.responseText);
+                    eventos.forEach(function (evento) {
+                        var option = document.createElement('option');
+                        option.value = evento.id;
+                        option.text = evento.nome;
+                        selectEvento.appendChild(option);
+                    });
+                }
+            };
+            xhr.send();
+        }
+
+        // Função para carregar a lista de motoristas via AJAX
+        function carregarMotoristas() {
+            var selectMotorista = document.getElementById('motorista');
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'backend/consultar_motoristas.php', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var motoristas = JSON.parse(xhr.responseText);
+                    motoristas.forEach(function (motorista) {
+                        var option = document.createElement('option');
+                        option.value = motorista.id;
+                        option.text = motorista.nome;
+                        selectMotorista.appendChild(option);
+                    });
+                }
+            };
+            xhr.send();
+        }
+
+        // Chame as funções para carregar os dados quando a página carregar
+        carregarEventosComViagens();
+        carregarMotoristas();
+    </script>
+</body>
+</html>

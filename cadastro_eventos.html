@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastro de Evento</title>
+    <!-- Inclua os arquivos Bootstrap CSS e outros recursos necessários -->
+    <script src="assets/js/color-modes.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.115.4">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+    <link rel="stylesheet" href="Assets/css/css@3">
+    <link href="Assets/css/dist/bootstrap.min.css" rel="stylesheet">
+    <link href="Assets/css/sign-in.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Cadastro de Evento</h1>
+    
+    <form action="backend/cadastrar_evento.php" method="POST">
+        <!-- Nome do Evento -->
+        <div class="form-group">
+            <label for="nome_evento">Nome do Evento:</label>
+            <input type="text" class="form-control" id="nome_evento" name="nome_evento" required>
+        </div>
+
+        <!-- Vagas Disponíveis -->
+        <div class="form-group">
+            <label for="vagas_disponiveis">Vagas Disponíveis:</label>
+            <input type="number" class="form-control" id="vagas_disponiveis" name="vagas_disponiveis" required>
+        </div>
+
+        <!-- Data de Início -->
+        <div class="form-group">
+            <label for="data_inicio">Data de Início:</label>
+            <input type="date" class="form-control" id="data_inicio" name="data_inicio" required>
+        </div>
+
+        <!-- Data Final -->
+        <div class="form-group">
+            <label for="data_final">Data Final:</label>
+            <input type="date" class="form-control" id="data_final" name="data_final" required>
+        </div>
+
+        <!-- Número de Dias do Evento -->
+        <div class="form-group">
+            <label for="numero_dias">Número de Dias do Evento:</label>
+            <input type="number" class="form-control" id="numero_dias" name="numero_dias" required>
+        </div>
+
+        <!-- Horário de Início -->
+        <div class="form-group">
+            <label for="horario_inicio">Horário de Início:</label>
+            <input type="time" class="form-control" id="horario_inicio" name="horario_inicio" required>
+        </div>
+
+        <!-- Horário Final -->
+        <div class="form-group">
+            <label for="horario_final">Horário Final:</label>
+            <input type="time" class="form-control" id="horario_final" name="horario_final" required>
+        </div>
+
+        <!-- Endereço -->
+        <div class="form-group">
+            <label for="endereco">Endereço:</label>
+            <input type="text" class="form-control" id="endereco" name="endereco" required>
+        </div>
+
+        <!-- Localização -->
+        <div class="form-group">
+            <label for="localizacao">Localização:</label>
+            <input type="text" class="form-control" id="localizacao" name="localizacao" required>
+        </div>
+
+        <!-- Nome do Contato -->
+        <div class="form-group">
+            <label for="nome_contato">Nome do Contato:</label>
+            <input type="text" class="form-control" id="nome_contato" name="nome_contato" required>
+        </div>
+
+        <!-- Telefone do Contato -->
+        <div class="form-group">
+            <label for="telefone_contato">Telefone do Contato:</label>
+            <input type="tel" class="form-control" id="telefone_contato" name="telefone_contato" required>
+        </div>
+
+        <!-- Opção de Vínculo com Uso do Ônibus -->
+        <div class="form-group">
+            <label for="vinculo_onibus">Vincular Uso do Ônibus:</label>
+            <input type="checkbox" id="vinculo_onibus" name="vinculo_onibus">
+        </div>
+
+        <!-- Campos para Uso do Ônibus (exibidos se a opção for marcada) -->
+        <div id="campos_onibus" style="display: none;">
+            <!-- Valor da Passagem -->
+            <div class="form-group">
+                <label for="valor_passagem">Valor da Passagem:</label>
+                <input type="text" class="form-control" id="valor_passagem" name="valor_passagem">
+            </div>
+
+            <!-- Número de Viagens -->
+            <div class="form-group">
+                <label for="numero_viagens">Número de Viagens:</label>
+                <input type="number" class="form-control" id="numero_viagens" name="numero_viagens">
+            </div>
+
+            <!-- Dia -->
+            <div class="form-group">
+                <label for="dia">Dia:</label>
+                <input type="date" class="form-control" id="dia" name="dia">
+            </div>
+
+            <!-- Número de Vagas no Ônibus para Ida -->
+            <div class="form-group">
+                <label for="vagas_ida">Número de Vagas no Ônibus para Ida:</label>
+                <input type="number" class="form-control" id="vagas_ida" name="vagas_ida">
+            </div>
+
+            <!-- Número de Vagas no Ônibus para Volta -->
+            <div class="form-group">
+                <label for="vagas_volta">Número de Vagas no Ônibus para Volta:</label>
+                <input type="number" class="form-control" id="vagas_volta" name="vagas_volta">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Cadastrar Evento</button>
+    </form>
+
+    <!-- Script para mostrar/ocultar campos de ônibus com base na seleção -->
+    <script>
+        document.getElementById('vinculo_onibus').addEventListener('change', function() {
+            var camposOnibus = document.getElementById('campos_onibus');
+            camposOnibus.style.display = this.checked ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
